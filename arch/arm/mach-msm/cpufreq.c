@@ -267,24 +267,6 @@ static int msm_cpufreq_pm_event(struct notifier_block *this,
 	}
 }
 
-static ssize_t store_mfreq(struct sysdev_class *class,
-			struct sysdev_class_attribute *attr,
-			const char *buf, size_t count)
-{
-	u64 val;
-
-	if (strict_strtoull(buf, 0, &val) < 0) {
-		printk(KERN_ERR "Failed param conversion\n");
-		return 0;
-	}
-	if (val)
-		override_cpu = 1;
-	else
-		override_cpu = 0;
-	return count;
-}
-
-static SYSDEV_CLASS_ATTR(mfreq, 0200, NULL, store_mfreq);
 
 static struct freq_attr *msm_cpufreq_attr[] = {
 	&cpufreq_freq_attr_scaling_available_freqs,
@@ -308,11 +290,6 @@ static struct notifier_block msm_cpufreq_pm_notifier = {
 static int __init msm_cpufreq_register(void)
 {
 	int cpu;
-
-	int err = sysfs_create_file(&cpu_sysdev_class.kset.kobj,
-		&attr_mfreq.attr);
-	if (err)
-		printk(KERN_ERR "Failed to create sysfs mfreq\n");
 
 	for_each_possible_cpu(cpu) {
 		mutex_init(&(per_cpu(cpufreq_suspend, cpu).suspend_mutex));
