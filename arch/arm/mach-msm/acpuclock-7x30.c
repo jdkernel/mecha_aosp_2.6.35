@@ -100,10 +100,6 @@ static struct cpufreq_frequency_table freq_table[] = {
         { 2, 768000 },
         { 3, 1024000 },
         { 4, 1222400 },
-        { 5, 1408000 },
-        { 6, 1593600 },
-        { 7, 1766400 },
-        { 8, 1920000 },
         { 9, CPUFREQ_TABLE_END },
 #endif
 };
@@ -128,10 +124,6 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 768000, PLL_1,    2, 0,  153600, 1075, VDD_RAW(1075) },
 	{ 1024000, PLL_2,    3, 0,  192000, 1100, VDD_RAW(1100) },
 	{ 1222400, PLL_2,    3, 0,  192000, 1150, VDD_RAW(1150) },
-	{ 1408000, PLL_2,    3, 0,  192000, 1250, VDD_RAW(1250) },
-	{ 1593600, PLL_2,   3, 0,  192000, 1325, VDD_RAW(1325) },
-	{ 1766400, PLL_2,   3, 0,  192000, 1375, VDD_RAW(1375) },
-        { 1920000, PLL_2,   3, 0,  192000, 1450, VDD_RAW(1450) },
 	{ 0 }
 };
 static unsigned long max_axi_rate;
